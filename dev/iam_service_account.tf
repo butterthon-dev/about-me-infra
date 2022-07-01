@@ -40,3 +40,9 @@ resource "google_project_iam_member" "sa_viewer_github_actions" {
   role    = "roles/viewer"
   member  = "serviceAccount:${google_service_account.dev_sa_github_actions.email}"
 }
+// Compute ロードバランサ管理者
+resource "google_project_iam_member" "sa_lb_admin_github_actions" {
+  project = var.project_id
+  role    = "roles/compute.loadBalancerAdmin"
+  member  = "serviceAccount:${google_service_account.dev_sa_github_actions.email}"
+}

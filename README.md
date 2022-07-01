@@ -17,7 +17,7 @@
   - Cloud SQL 管理者
   - DNS 管理者
   - Compute ネットワーク管理者
-  - storage.buckets.create + storage.buckets.update + storage.buckets.getIamPolicy + storage.buckets.setIamPolicy（カスタムロール）
+  - storage.buckets.create + storage.buckets.update + storage.buckets.delete + storage.buckets.getIamPolicy + storage.buckets.setIamPolicy（カスタムロール）
   - Secret Manager 管理者
   - Secret Managerのシークレットバージョンのマネージャー
   - compute.sslCertificates.create + compute.sslCertificates.delete（カスタムロール）
