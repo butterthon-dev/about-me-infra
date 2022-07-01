@@ -8,6 +8,7 @@
 - Service Networking APIを有効化
 - Secret Manager APIを有効化
   - 有効化ボタンではなく「管理」ボタンを押すことで有効化できる
+- Kubernetes Engine APIを有効化
 - Terraform用のサービスアカウントに付与するロール
   - Artifact Registry 管理者
   - IAM Workload Identity プール管理者
@@ -21,6 +22,10 @@
   - Secret Manager 管理者
   - Secret Managerのシークレットバージョンのマネージャー
   - compute.sslCertificates.create + compute.sslCertificates.delete（カスタムロール）
+  - Kubernetes Engine 管理者
+  - サービス アカウント ユーザー
+  - ※ 最小限のロール付与で済むようカスタムロールを作成したりしている。カスタムロールの付与がうまくいかなかった場合、普通に既存のロール付与
+    - 既存のロールだと過剰に権限がつくのでうまいことカスタムロールで収めたいところ・・・
 
 # セットアップ手順
 ### 初期化
