@@ -10,17 +10,16 @@ resource "google_sql_database_instance" "instance_about_me" {
   region              = var.region
   database_version    = var.database_version
   deletion_protection = var.deletion_protection
-  depends_on          = [var.private_vpc_conn]
 
   settings {
     # CloudSQLインスタンスタイプ
     tier = var.tier
 
     // パブリックIP無効
-    ip_configuration {
-      ipv4_enabled = false
-      private_network = var.private_network_id
-    }
+    # ip_configuration {
+    #   ipv4_enabled = false
+    #   private_network = var.private_network_id
+    # }
   }
 }
 

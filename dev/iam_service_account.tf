@@ -46,3 +46,9 @@ resource "google_project_iam_member" "sa_lb_admin_github_actions" {
   role    = "roles/compute.loadBalancerAdmin"
   member  = "serviceAccount:${google_service_account.dev_sa_github_actions.email}"
 }
+// Secret Manager
+resource "google_project_iam_member" "sa_secret_accsessor_github_actions" {
+  project = var.project_id
+  role    = "roles/secretmanager.secretAccessor"
+  member  = "serviceAccount:${google_service_account.dev_sa_github_actions.email}"
+}

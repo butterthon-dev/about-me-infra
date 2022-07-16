@@ -15,5 +15,5 @@ variable "deletion_protection" {
 }
 variable "username" { type = string }
 variable "sql_user_password" { type = string }
-variable "private_network_id" { type = string }
-variable "private_vpc_conn" { type = any }
+# variable "private_network_id" { type = string }
+# variable "private_vpc_conn" { type = any }

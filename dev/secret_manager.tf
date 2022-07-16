@@ -1,5 +1,6 @@
 locals {
-  prefix = "dev_about_me-"
+  prefix      = "dev_about_me-"
+  web_prefix  = "dev_about_me_web-"
 }
 
 resource "google_secret_manager_secret" "secret_django_debug" {
@@ -42,12 +43,22 @@ resource "google_secret_manager_secret" "secret_database_url" {
   }
   labels = { label = "dev" }
 }
+resource "google_secret_manager_secret" "secret_django_allowed_hosts" {
+  project   = var.project_id
+  secret_id = "${local.prefix}DJANGO_ALLOWED_HOSTS"
+  replication {
+    user_managed {
+        replicas { location = var.region }
+    }
+  }
+  labels = { label = "dev" }
+}
 
 // secret_detaを空文字にはできない
 // ※ 空文字でもapplyは成功するが、Web UI上でバージョンが登録されてない状態になる
 resource "google_secret_manager_secret_version" "v_django_debug" {
   secret        = google_secret_manager_secret.secret_django_debug.id
-  secret_data   = "False"
+  secret_data   = "True"
 }
 resource "google_secret_manager_secret_version" "v_django_settings_module" {
   secret        = google_secret_manager_secret.secret_django_settings_module.id
@@ -65,4 +76,8 @@ resource "google_secret_manager_secret_version" "v_database_url" {
 
   # GKEの場合
   secret_data   = "mysql://${module.cloud_sql.sql_username}:${var.sql_user_password}@127.0.0.1:3306/${module.cloud_sql.db_name}?charset=utf8mb4"
+}
+resource "google_secret_manager_secret_version" "v_django_allowed_hosts" {
+  secret        = google_secret_manager_secret.secret_django_allowed_hosts.id
+  secret_data   = "*"
 }

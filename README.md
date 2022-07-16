@@ -43,3 +43,8 @@ gcloud auth application-default login
 ``` shell
 terraform apply
 ```
+
+### 構成ファイル指定で適用
+``` shell
+terraform apply `cat ./iam_service_account.tf | terraform fmt - | grep -E 'resource |module ' | tr -d '"' | awk '{printf("-target=%s.%s ", $2,$3);}'`
+```
